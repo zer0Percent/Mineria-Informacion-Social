@@ -11,7 +11,7 @@ Typically, in the gathering process of any type of social data is implied the ti
 	\begin{center}
 		\begin{tabular}{|l|r|r|}
 			\hline
-			Dataset &    Start date  & End date\\
+			\textbf{Dataset} &    \textbf{Start date } &\textbf{ End date}\\
 			\hline \hline
 			Twitter              &  2021-12-04  &  2021-12-31\\ 
 			\hline
@@ -25,20 +25,112 @@ Typically, in the gathering process of any type of social data is implied the ti
 	\label{table:periodTime}
 \end{table}
 
-Each dataset is built according to a fixed set of keywords that corresponds to named entities. Each keyword belongs to the domain of music, stock market and news related to a natural disaster. The table \ref{table:keywords} summarizes this information.\\
-TODO: Table summarizing the keywords used per dataset
+Each dataset is built according to a fixed set of keywords that corresponds to named entities. Each keyword belongs to the domain of music, stock market, news related to a natural disaster, technology and influencers. The table \ref{table:keywords} summarizes this information.\\
 
-\par 
 %Social media considered, Keywords (named entities), gathering time window.
-
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Keyword} & \textbf{Domain} & \multicolumn{3}{c|}{\textbf{Dataset}} \bigstrut\\
+		\hline \hline
+		\textit{paramore} & \multirow{3}[6]{*}{Music} & \multirow{14}[28]{*}{Twitter} & \multirow{7}[14]{*}{Blog posts} & \multirow{6}[12]{*}{Reddit} \bigstrut\\
+		\cline{1-1}    \textit{my chemical romance} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{the smashing pumpkins} &       &       &       &  \bigstrut\\
+		\cline{1-2}    \textit{la palma} & News  &       &       &  \bigstrut\\
+		\cline{1-2}    \textit{dalas} & Influencer &       &       &  \bigstrut\\
+		\cline{1-2}    \textit{apple} & \multirow{2}[4]{*}{Technology} &       &       &  \bigstrut\\
+		\cline{1-1}\cline{5-5}    \textit{microsoft} &       &       &       & \multirow{8}[16]{*}{} \bigstrut\\
+		\cline{1-2}\cline{4-4}    \textit{\$AMC} & \multirow{7}[14]{*}{Financial} &       & \multirow{7}[14]{*}{} &  \bigstrut\\
+		\cline{1-1}    \textit{\$GME} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{\$AAPL} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{\$HOOD} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{\$MSFT} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{\$NVDA} &       &       &       &  \bigstrut\\
+		\cline{1-1}    \textit{\$TWKS} &       &       &       &  \bigstrut\\
+		\hline
+	\end{tabular}%
+	\label{table:keywords}%
+	\caption{Keywords with their domain and datasets containing them.}
+\end{table}%
+\par 
+For each day in the periods of time described in Table \ref{table:periodTime} a daily retrieval process was executed. For the Twitter dataset, it was retrieved 100.000 tweets per day. The blog posts dataset was built only with a single API call since Twingly indexes articles and stores them in their database and the API call retrieves information persisted from the three lasts months.
+However, for the Reddit dataset only 100 posts could be retrieve without taking into account of repeated posts.
 \subsection{Formatting process}
+
+%TODO: explain this
+\begin{Verbatim}[xleftmargin=.5in]
+	{
+		// Reddit document format
+		"post_id": ,
+		"lang": ,
+		"date_posted": ,
+		"sentiment": ,
+		"text": ,
+		"ups": ,
+		"comments": ,
+		"user_name": ,
+		"user_id": ,
+		"user_url": 
+	}
+\end{Verbatim}
+
+%Tweet
+\begin{Verbatim}[xleftmargin=.5in]
+	// Tweet format
+	{
+		"date": ,
+		"id_tweet": ,
+		"language": ,
+		"user_id": 
+	}
+\end{Verbatim}
+
+%Blog posts
+\begin{Verbatim}[xleftmargin=.5in]
+	// Blog post document format
+	{
+		"author": ,
+		"authority": ,
+		"blog_id": ,
+		"blog_name": ,
+		"blog_rank": ,
+		"blog_url": ,
+		"coordinates": ,
+		"id": ,
+		"images": ,
+		"indexed_at": ,
+		"inlinks_count": ,
+		"language_code": ,
+		"latitude": ,
+		"links": ,
+		"location_code": ,
+		"published_at": ,
+		"reindexed_at": ,
+		"tags": ,
+		"text": ,
+		"title": ,
+		"url"
+	}
+\end{Verbatim}
 \subsection{Limitations}
+
+The Twitter API limits the number of API calls per day. This led to the retrieval process to take several hours because wait clauses must be coded to avoid the rejection of API calls by the Twitter side. Furthermore, the textual information can not be shared publicly due to legal Twitter concerns. However, with the tweet ID can be retrieved the metadata that defines a tweet such that the geographical position where the tweet was posted, the number of retweets etc. \\
+
+\par Twingly provides a great API to retrieve blog posts. However, the supported format is XML which is not the trend nowadays. Nonetheless, there exists packages that allow to translate files from XML to JSON format.
+\par Lastly, the Social Searcher API is the most restrictive. Only 100 posts per API call can be retrieved and the language of the posts is not guaranteed to match with the one specified in the API call. However, the API response contains attributes that can be exploited in the sentiment analysis context like the sentiment property.
+%Reddit
+
 
 \section{Data analysis}
 
 \subsection{Corpora analysis at dataset level}
-\subsection{Corpora analysis at named entity level}
 
+%TODO include captures
+%TODO explain each one
+\subsection{Corpora analysis at named entity level}
+%TODO include captures
+%TODO explain each one
 % Copora analysis at dataset level
 	% Number of posts of each social media
 	% Number of posts of each language an social media
