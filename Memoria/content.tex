@@ -1,1 +1,66 @@
-\section{Contents}
+\section{Data retrieval process: gather and formatting social media data}
+
+In this work it is proposed three datasets with social data from three social networks that are Twitter, Reddit and post blogs. Each dataset is build by using three different APIs: the Twitter API for the Twitter dataset, the Twingly API for the blog posts dataset and the Social Searcher API for the Reddit dataset. For each dataset, it is considered a set of keywords that will retrieve social information by exact matching in the corpus of each document. Since the retrieval must be performed for different languages, the keywords corresponds to named entities or specific lingo used in the social media in question. As it will be seen, some tweets were retrieved by using the special character \textit{\$} which denotes information related to the stock market.
+
+\par The next sections are intended to explain the gathering process, how the data is formatted in order to persist it according to legal concerns of the social media source information and some limitations related to the use of these type of APIs and the information they provide.
+\subsection{Gathering process}
+%APIS: Twitter, Twingly and Social Media Searcher
+Typically, in the gathering process of any type of social data is implied the time variable which, for example,  can be used to cluster documents by fixed window times. The building process of the different datasets provided comprise periods of time in terms of its retrieval. The table \ref{table:periodTime} shows the dates when the retrieval process starts and ends per dataset.
+
+\begin{table}[htb]
+	\begin{center}
+		\begin{tabular}{|l|r|r|}
+			\hline
+			Dataset &    Start date  & End date\\
+			\hline \hline
+			Twitter              &  2021-12-04  &  2021-12-31\\ 
+			\hline
+			Blog posts &  2021-11-08 	& 2021-12-06 \\
+			\hline
+			Reddit &  2021-11-08   	& 2021-12-06 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Start and end dates of the retrieval data}
+	\label{table:periodTime}
+\end{table}
+
+Each dataset is built according to a fixed set of keywords that corresponds to named entities. Each keyword belongs to the domain of music, stock market and news related to a natural disaster. The table \ref{table:keywords} summarizes this information.\\
+TODO: Table summarizing the keywords used per dataset
+
+\par 
+%Social media considered, Keywords (named entities), gathering time window.
+
+\subsection{Formatting process}
+\subsection{Limitations}
+
+\section{Data analysis}
+
+\subsection{Corpora analysis at dataset level}
+\subsection{Corpora analysis at named entity level}
+
+% Copora analysis at dataset level
+	% Number of posts of each social media
+	% Number of posts of each language an social media
+	% Distribution of links of each social media
+	
+% Corpora analysis at named entity level
+	% Twitter 
+		% # hashags containing the named entity
+		% # links
+		% # Rt's
+		% Number of posts published per day
+		
+	% Reddit
+
+		% average ups per entity (or box plot)
+		% average comments per entity (or boxplot)
+		% Number of negative and positive reddits posts
+		% # posts per language
+	%Twingly posts
+		% Distribution of number of posts for each language
+		% Distribution of number of posts with links
+		% Number of posts published per day
+		% Average number of tags
+		% Average length of text and title
+		% 
