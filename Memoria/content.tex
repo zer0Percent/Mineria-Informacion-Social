@@ -115,7 +115,7 @@ However, for the Reddit dataset only 100 posts could be retrieve without taking 
 \end{Verbatim}
 \subsection{Limitations}
 
-The Twitter API limits the number of API calls per day. This led to the retrieval process to take several hours because wait clauses must be coded to avoid the rejection of API calls by the Twitter side. Furthermore, the textual information can not be shared publicly due to legal Twitter concerns. However, with the tweet ID can be retrieved the metadata that defines a tweet such that the geographical position where the tweet was posted, the number of retweets etc. \\
+The Twitter API limits the number of API calls per day. This led to the retrieval process to take several hours because wait clauses must be coded to avoid the rejection of API calls by the Twitter side. Furthermore, the textual information can not be shared publicly due to legal Twitter concerns. However, with the tweet ID it is possible to retrieve the metadata that defines a tweet such that the geographical position where the tweet was posted, the number of retweets etc. \\
 
 \par Twingly provides a great API to retrieve blog posts. However, the supported format is XML which is not the trend nowadays. Nonetheless, there exists packages that allow to translate files from XML to JSON format.
 \par Lastly, the Social Searcher API is the most restrictive. Only 100 posts per API call can be retrieved and the language of the posts is not guaranteed to match with the one specified in the API call. However, the API response contains attributes that can be exploited in the sentiment analysis context like the sentiment property.
