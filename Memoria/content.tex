@@ -141,11 +141,73 @@ The Twitter API limits the number of API calls per day. This led to the retrieva
 \newpage
 \section{Data analysis}
 
+
+
+% Questions that motivates the analysis
+The data analysis consists in study frequentist information derived from the data considered in the data structures commented. This analysis is done at two levels regarding the persisted information: (1) At dataset level where it is reflected how varies the number of posts in function the language and the date posted; (2) At named entity level where it is studied each dataset in function the specific characteristic of the dataset. I.e the number of hashtags per named entity per named entity.
 \subsection{Corpora analysis at dataset level}
 
+\subsubsection{Twitter dataset analysis}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.35]{twitter/datasetlevel/twitter_postcounts_date.png}
+		\caption{Number of tweets published per date. Only the dates with higher values are shown.}
+		\label{fig:twitter_postcounts_date}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{twitter/datasetlevel/twitter_postcounts_lang.png}
+		\caption{Tweet count posted per language.}
+		\label{fig:twitter_postcounts_lang}
+	\end{center}
+\end{figure}
+\subsubsection{Blog post dataset analysis}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_lang.png}
+		\caption{Blog post count posted per language.}
+		\label{fig:blogpost_postcounts_lang}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_date.png}
+		\caption{Blog post count posted per date. Only the dates with higher values are shown.}
+		\label{fig:blogpost_postcounts_date}
+	\end{center}
+\end{figure}
+
+
+\subsubsection{Reddit dataset analysis}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{reddit/datasetlevel/reddit_postcounts_lang.png}
+		\caption{Reddit post count posted per language.}
+		\label{fig:reddit_postcounts_lang}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{reddit/datasetlevel/reddit_postcounts_date.png}
+		\caption{Reddit post count posted per date. Only the dates with higher values are shown.}
+		\label{fig:reddit_postcounts_date}
+	\end{center}
+\end{figure}
+
+% 
 %TODO include captures
 %TODO explain each one
 \subsection{Corpora analysis at named entity level}
+\subsubsection{Twitter dataset analysis}
+\subsubsection{Blog post dataset analysis}
+\subsubsection{Reddit dataset analysis}
+
 %TODO include captures
 %TODO explain each one
 % Copora analysis at dataset level
