@@ -98,7 +98,7 @@ The Reddit dataset contains information about the sentiment of the text and popu
 
 \par
 
-Lastly, the Twingly API was used to retrieve the blog posts information regarding the keywords and languages considered. In comparison with the later structures, Twingly provides more information like the images attached for each post or the links contained. The blog post structure is depicted in the Figure \ref{fig:twinglyStructure}.
+Lastly, the Twingly API was used to retrieve the blog posts information regarding the keywords and languages considered. In comparison with the later structures, Twingly provides more information like the images attached for each post or the links contained in it. The blog post structure is depicted in the Figure \ref{fig:twinglyStructure}.
 %Blog posts
 \begin{figure}[H]
 	\begin{Verbatim}[xleftmargin=.5in]
@@ -144,7 +144,7 @@ The Twitter API limits the number of API calls per day. This led to the retrieva
 
 
 % Questions that motivates the analysis
-The data analysis consists in study frequentist information derived from the data considered in the data structures commented. This analysis is done at two levels regarding the persisted information: (1) At dataset level where it is reflected how varies the number of posts in function the language and the date posted; (2) At named entity level where it is studied each dataset in function the specific characteristic of the dataset. I.e the number of hashtags per named entity per named entity.
+The data analysis consists in study frequentist information derived from the data considered in the data structures commented. This analysis is done at two levels regarding the persisted information: (1) At dataset level where it is reflected how the number of posts varies in function the language and the date posted; (2) At named entity level where it is studied each dataset in function a specific characteristic of the dataset. I.e the number of hashtags per named entity.
 \subsection{Corpora analysis at dataset level}
 
 \subsubsection{Twitter dataset analysis}
@@ -159,7 +159,7 @@ The data analysis consists in study frequentist information derived from the dat
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{twitter/datasetlevel/twitter_postcounts_lang.png}
-		\caption{Tweet count posted per language.}
+		\caption{Tweet posts count per language.}
 		\label{fig:twitter_postcounts_lang}
 	\end{center}
 \end{figure}
@@ -168,7 +168,7 @@ The data analysis consists in study frequentist information derived from the dat
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_lang.png}
-		\caption{Blog post count posted per language.}
+		\caption{Blog posts count posted per language.}
 		\label{fig:blogpost_postcounts_lang}
 	\end{center}
 \end{figure}
@@ -176,7 +176,7 @@ The data analysis consists in study frequentist information derived from the dat
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_date.png}
-		\caption{Blog post count posted per date. Only the dates with higher values are shown.}
+		\caption{Blog posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:blogpost_postcounts_date}
 	\end{center}
 \end{figure}
@@ -187,7 +187,7 @@ The data analysis consists in study frequentist information derived from the dat
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{reddit/datasetlevel/reddit_postcounts_lang.png}
-		\caption{Reddit post count posted per language.}
+		\caption{Reddit posts count posted per language.}
 		\label{fig:reddit_postcounts_lang}
 	\end{center}
 \end{figure}
@@ -195,7 +195,7 @@ The data analysis consists in study frequentist information derived from the dat
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{reddit/datasetlevel/reddit_postcounts_date.png}
-		\caption{Reddit post count posted per date. Only the dates with higher values are shown.}
+		\caption{Reddit posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:reddit_postcounts_date}
 	\end{center}
 \end{figure}
@@ -204,10 +204,104 @@ The data analysis consists in study frequentist information derived from the dat
 %TODO include captures
 %TODO explain each one
 \subsection{Corpora analysis at named entity level}
-\subsubsection{Twitter dataset analysis}
-\subsubsection{Blog post dataset analysis}
-\subsubsection{Reddit dataset analysis}
+\subsubsection{Twitter named entities analysis}
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_average_\#links.png}
+		\caption{Average number of links per named entity.}
+		\label{fig:twitter_average_links}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_averagecount_hashtags.png}
+		\caption{Average number of hashtags per named entity.}
+		\label{fig:twitter_averagecount_hashtags}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_counts_isrt.png}
+		\caption{Tweet counts that are retweet.}
+		\label{fig:twitter_counts_isrt}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_postcounts_entity.png}
+		\caption{Tweet posts count posted per language and named entity.}
+		\label{fig:twitter_postcounts_entity}
+	\end{center}
+\end{figure}
+
+
+
+\subsubsection{Blog posts named entities analysis}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{blogposts/namedentitylevel/blogpost_average_\#links.png}
+		\caption{Average number of links per named entity.}
+		\label{fig:blogpost_average_links}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{blogposts/namedentitylevel/blogpost_average_\#tags.png}
+		\caption{Average number of tags per named entity.}
+		\label{fig:blogpost_average_tags_entity}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.35]{blogposts/namedentitylevel/blogpost_postcount_lang.png}
+		\caption{Blog posts count per language and named entity.}
+		\label{fig:blogposts_postcount_lang_entity}
+	\end{center}
+\end{figure}
+
+
+
+\subsubsection{Reddit named entities analysis}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{reddit/namedentitylevel/reddit_average_\#comments.png}
+		\caption{Average number of comments per named entity.}
+		\label{fig:reddit_average_comments_entity}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{reddit/namedentitylevel/reddit_average_\#ups.png}
+		\caption{Reddit posts count per named entity.}
+		\label{fig:reddit_average_ups_entity}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.4]{reddit/namedentitylevel/reddit_postcount_lang.png}
+		\caption{Average number of likes per named entity.}
+		\label{fig:reddit_postcount_lang_entity}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.4]{reddit/namedentitylevel/reddit_postcount_sentiment.png}
+		\caption{Reddit posts count per sentiment and named entity.}
+		\label{fig:reddit_postcount_sentiment_entity}
+	\end{center}
+\end{figure}
 %TODO include captures
 %TODO explain each one
 % Copora analysis at dataset level
