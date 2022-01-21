@@ -5,7 +5,7 @@ In this work it is proposed three datasets with social data from three social ne
 \par The next sections are intended to explain the gathering process, how the data is formatted in order to persist it according to legal concerns of the social media source information and some limitations related to the use of these type of APIs and the information they provide.
 \subsection{Gathering process}
 %APIS: Twitter, Twingly and Social Media Searcher
-Typically, in the gathering process of any type of social data is implied the time variable which, for example,  can be used to cluster documents by fixed window times. The building process of the different datasets provided comprise periods of time in terms of its retrieval. The table \ref{table:periodTime} shows the dates when the retrieval process starts and ends per dataset.
+Typically, in the gathering process of any type of social data is implied the time variable which, for example,  can be used to cluster documents by fixed window times. The building process of the different datasets provided comprise periods of time in terms of its retrieval. The Table \ref{table:periodTime} shows the dates when the retrieval process starts and ends per dataset.
 
 \begin{table}[htb]
 	\begin{center}
@@ -25,10 +25,10 @@ Typically, in the gathering process of any type of social data is implied the ti
 	\label{table:periodTime}
 \end{table}
 
-Each dataset is built according to a fixed set of keywords that corresponds to named entities. Each keyword belongs to the domain of music, stock market, news related to a natural disaster, technology and influencers. The table \ref{table:keywords} summarizes this information.\\
+Each dataset is built according to a fixed set of keywords that corresponds to named entities. Each keyword belongs to the domain of music, stock market, news related to a natural disaster, technology and influencers. Each keyword corresponds with a named entity. The Table \ref{table:keywords} summarizes this information.\\
 
 %Social media considered, Keywords (named entities), gathering time window.
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -50,12 +50,12 @@ Each dataset is built according to a fixed set of keywords that corresponds to n
 		\cline{1-1}    \textit{\$TWKS} &       &       &       &  \bigstrut\\
 		\hline
 	\end{tabular}%
-	\label{table:keywords}%
 	\caption{Keywords with their domain and datasets containing them.}
+	\label{table:keywords}%
 \end{table}%
 \par 
-For each day in the periods of time described in Table \ref{table:periodTime} a daily retrieval process was executed. For the Twitter dataset, it was retrieved 100.000 tweets per day. The blog posts dataset was built only with a single API call since Twingly indexes articles and stores them in their database and the API call retrieves information persisted from the three lasts months.
-However, for the Reddit dataset only 100 posts could be retrieve without taking into account of repeated posts.
+The intention for each dataset is to be multilingual in order to analyze differences between the datasets and the named entities in function of the language. Hence, seven languages are proposed in the retrieval process that are English, Spanish, French, Portuguese, Italian German and Dutch.
+For each day in the periods of time described in Table \ref{table:periodTime} a daily retrieval process was executed. For the Twitter dataset, it was retrieved 100,000 tweets per day. The blog posts dataset was built only with a single API call since Twingly indexes articles and stores them in their database and the API call retrieves information persisted from the three last months. However, for the Reddit dataset only 100 posts could be retrieved per day. All the datasets were filtered in order to delete repeated posts.
 \subsection{Formatting process}
 The three APIs used to retrieve the social data define a set of properties returned in the response of the API call. However, not all information is considered in the dataset building process for legal or practical reasons. In the gathering and processing the Twitter information the textual information must be deleted because the Twitter terms and conditions of its API usage. It is important to remark that with the tweet ID or the user ID it can be retrieved more information provided by the Twitter API. In this work, it will be only considered these IDs and the date and language of each tweet. The following schema defines the structure of a tweet in the dataset.
 %Tweet
@@ -138,24 +138,28 @@ The Twitter API limits the number of API calls per day. This led to the retrieva
 \par Lastly, the Social Searcher API is the most restrictive. Only 100 posts per API call can be retrieved and the language of the posts is not guaranteed to match with the one specified in the API call. However, the API response contains attributes that can be exploited in the sentiment analysis context like the sentiment property.
 %Reddit
 
-\newpage
+
 \section{Data analysis}
 
+Mining information from social data is not a trivial task since there are some aspects that must be taken into account. First the noise data will difficult the application of Machine Learning algorithms, noise that is mostly related to misspellings. Secondly the lack of textual data in the microblogging sites obstructs the application of these algorithms. This motivates to enrich the dataset with external sources like Wikipedia \citep{paper:wikiEnrich} or with the links that can potentially contain.
+\par However, in this work it will be assessed the question of what type of data is likely to be used in further analyses and what tools covers the variables considered in this study. For example, exclude those languages that do not contain enough information to train Machine Learning models or exploit determined attributes to enrich the textual information. For this, two analyses are proposed at different levels of granularity: (1) At dataset level where it is depicted some statistics related to the languages and the dates when the social data was posted; (2) At named entity level where it is studied whether some specific lingo for a given dataset could be used in these potential analyses.
 
 
-% Questions that motivates the analysis
-The data analysis consists in study frequentist information derived from the data considered in the data structures commented. This analysis is done at two levels regarding the persisted information: (1) At dataset level where it is reflected how the number of posts varies in function the language and the date posted; (2) At named entity level where it is studied each dataset in function a specific characteristic of the dataset. I.e the number of hashtags per named entity.
-\subsection{Corpora analysis at dataset level}
-
+\subsection{Analysis at dataset level}
+For the analysis at dataset level it will be considered two common variables across the three datasets: the language and the number of posts per date.
 \subsubsection{Twitter dataset analysis}
+The figure \ref{fig:twitter_postcounts_date} shows top 100 dates ordered by the number of tweets published. This suggests an analysis of the tweets posted those days in order to detect sudden events.
+However, the Twitter dataset is the largest one and cannot be compared with the other at first glance.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.35]{twitter/datasetlevel/twitter_postcounts_date.png}
+		\includegraphics[scale=0.29]{twitter/datasetlevel/twitter_postcounts_date.png}
 		\caption{Number of tweets published per date. Only the dates with higher values are shown.}
 		\label{fig:twitter_postcounts_date}
 	\end{center}
 \end{figure}
 
+\par For the language categorical variable, the count of tweets of each value is shown in the Figure \ref{fig:twitter_postcounts_lang}. Since there is more available data for the English language, it is feasible to study a specific task with a monolingual approach an then tackle the problem but with a multilingual perspective. However, when the task becomes multilingual it must be taken into account that the NLP tools are limited for certain languages. CoreNLP provides a pipeline to tokenize, perform a PoS tagging, lemmatize and detect named entities given a document for multiples languages \citep{coreNlp}. 
+\par In the case of Twitter the challenges not only appears from the multilingual side. Deal with short texts with misspellings makes tougher Machine Learning tasks like clustering or classification since the lack of data and the noise will affect in the performance of the trained model in terms of their prediction capability. An approach to avoid this issue could be to retrain the current models in order to adapt them to the nuances of the tweet data \citep{synthesisLecturesSocial}. However, this probably will lead to models trained over these specific features and the desired generalization of the retrained models will not be guaranteed. This fact motivates the design of systems that normalize the input text in order to reuse the trained models for the NLP tasks.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{twitter/datasetlevel/twitter_postcounts_lang.png}
@@ -164,7 +168,7 @@ The data analysis consists in study frequentist information derived from the dat
 	\end{center}
 \end{figure}
 \subsubsection{Blog post dataset analysis}
-
+The distribution of blog posts per language is quite similar to the Twitter dataset as shown in the Figure \ref{fig:blogpost_postcounts_lang}. Also, for the amount of posts published per date, there exists some days in the number of posts soars.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_lang.png}
@@ -175,7 +179,7 @@ The data analysis consists in study frequentist information derived from the dat
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_date.png}
+		\includegraphics[scale=0.4]{blogposts/datasetlevel/blogpost_postcounts_date.png}
 		\caption{Blog posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:blogpost_postcounts_date}
 	\end{center}
@@ -183,6 +187,7 @@ The data analysis consists in study frequentist information derived from the dat
 
 
 \subsubsection{Reddit dataset analysis}
+Something quite different occurs with the Reddit dataset. First of all, despite the predominant language is the English, there are fewer posts for the remaining languages. Furthermore, there are languages not reflected in the proposed ones. This is due issues of the Social Media Searcher API. Note that the total number of posts are fewer in comparison to the later datasets. The Figure \ref{fig:reddit_postcounts_lang} depicts the count of Reddit posts per language.
 
 \begin{figure}[H]
 	\begin{center}
@@ -192,23 +197,25 @@ The data analysis consists in study frequentist information derived from the dat
 	\end{center}
 \end{figure}
 
+From the Figure \ref{fig:reddit_postcounts_date} it can be stated that, regardless the social data, the time variable could be used to mine information related to events by considering, for example, the hypothesis that posts with common words and published in similar dates will form clusters of related posts.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{reddit/datasetlevel/reddit_postcounts_date.png}
+		\includegraphics[scale=0.29]{reddit/datasetlevel/reddit_postcounts_date.png}
 		\caption{Reddit posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:reddit_postcounts_date}
 	\end{center}
 \end{figure}
 
 % 
-%TODO include captures
-%TODO explain each one
-\subsection{Corpora analysis at named entity level}
+
+\subsection{Analysis at named entity level.}
+This analysis is intended to elucidate variables that could be candidates to be considered in further analyses. This analysis will focus on specific features of the social media source for the different named entities considered.
+%TODO
 \subsubsection{Twitter named entities analysis}
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_average_\#links.png}
+		\includegraphics[scale=0.26]{twitter/namedentitylevel/twitter_average_\#links.png}
 		\caption{Average number of links per named entity.}
 		\label{fig:twitter_average_links}
 	\end{center}
@@ -217,7 +224,7 @@ The data analysis consists in study frequentist information derived from the dat
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_averagecount_hashtags.png}
+		\includegraphics[scale=0.26]{twitter/namedentitylevel/twitter_averagecount_hashtags.png}
 		\caption{Average number of hashtags per named entity.}
 		\label{fig:twitter_averagecount_hashtags}
 	\end{center}
@@ -233,7 +240,7 @@ The data analysis consists in study frequentist information derived from the dat
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_postcounts_entity.png}
+		\includegraphics[scale=0.27]{twitter/namedentitylevel/twitter_postcounts_entity.png}
 		\caption{Tweet posts count posted per language and named entity.}
 		\label{fig:twitter_postcounts_entity}
 	\end{center}
@@ -262,7 +269,7 @@ The data analysis consists in study frequentist information derived from the dat
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.35]{blogposts/namedentitylevel/blogpost_postcount_lang.png}
+		\includegraphics[scale=0.2]{blogposts/namedentitylevel/blogpost_postcount_lang.png}
 		\caption{Blog posts count per language and named entity.}
 		\label{fig:blogposts_postcount_lang_entity}
 	\end{center}
