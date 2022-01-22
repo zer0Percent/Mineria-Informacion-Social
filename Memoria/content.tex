@@ -1,6 +1,6 @@
 \section{Data retrieval process: gather and formatting social media data}
 
-In this work it is proposed three datasets with social data from three social networks that are Twitter, Reddit and post blogs. Each dataset is build by using three different APIs: the Twitter API for the Twitter dataset, the Twingly API for the blog posts dataset and the Social Searcher API for the Reddit dataset. For each dataset, it is considered a set of keywords that will retrieve social information by exact matching in the corpus of each document. Since the retrieval must be performed for different languages, the keywords corresponds to named entities or specific lingo used in the social media in question. As it will be seen, some tweets were retrieved by using the special character \textit{\$} which denotes information related to the stock market.
+In this work it is proposed three datasets with social data from three social networks that are Twitter, Reddit and post blogs. Each dataset is build by using three different APIs: the Twitter API for the Twitter dataset, the Twingly API for the blog posts dataset and the Social Searcher API for the Reddit dataset. For each dataset it is considered a set of keywords that will retrieve social information by exact matching within corpus of each document. Since the retrieval must be performed for different languages, the keywords corresponds to named entities or specific lingo used in the social media in question in order to execute retrieval queries whose words do not need to be translated to the target language. As it will be seen, some tweets were retrieved by using the special character \textit{\$} which denotes information related to the stock market.
 
 \par The next sections are intended to explain the gathering process, how the data is formatted in order to persist it according to legal concerns of the social media source information and some limitations related to the use of these type of APIs and the information they provide.
 \subsection{Gathering process}
@@ -141,7 +141,7 @@ The Twitter API limits the number of API calls per day. This led to the retrieva
 
 \section{Data analysis}
 
-Mining information from social data is not a trivial task since there are some aspects that must be taken into account. First the noise data will difficult the application of Machine Learning algorithms, noise that is mostly related to misspellings. Secondly the lack of textual data in the microblogging sites obstructs the application of these algorithms. This motivates to enrich the dataset with external sources like Wikipedia \citep{paper:wikiEnrich} or with the links that can potentially contain.
+Mining information from social data is not a trivial task since there are some aspects that must be taken into account. First the noise data will difficult the execution of Machine Learning algorithms, noise that is mostly related to misspellings. Secondly the lack of textual data in the microblogging sites obstructs the application of these algorithms. This motivates to enrich the dataset with external sources like Wikipedia \citep{paper:wikiEnrich} or with the links that can potentially contain.
 \par However, in this work it will be assessed the question of what type of data is likely to be used in further analyses and what tools covers the variables considered in this study. For example, exclude those languages that do not contain enough information to train Machine Learning models or exploit determined attributes to enrich the textual information. For this, two analyses are proposed at different levels of granularity: (1) At dataset level where it is depicted some statistics related to the languages and the dates when the social data was posted; (2) At named entity level where it is studied whether some specific lingo for a given dataset could be used in these potential analyses.
 
 
@@ -168,7 +168,7 @@ However, the Twitter dataset is the largest one and cannot be compared with the 
 	\end{center}
 \end{figure}
 \subsubsection{Blog post dataset analysis}
-The distribution of blog posts per language is quite similar to the Twitter dataset as shown in the Figure \ref{fig:blogpost_postcounts_lang}. Also, for the amount of posts published per date, there exists some days in the number of posts soars.
+The distribution of blog posts per language is quite similar to the Twitter dataset as shown in the Figure \ref{fig:blogpost_postcounts_lang}. Also, for the amount of posts published per date, there exists some days the number of posts soars.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{blogposts/datasetlevel/blogpost_postcounts_lang.png}
@@ -211,8 +211,18 @@ From the Figure \ref{fig:reddit_postcounts_date} it can be stated that, regardle
 \subsection{Analysis at named entity level.}
 This analysis is intended to elucidate variables that could be candidates to be considered in further analyses. This analysis will focus on specific features of the social media source for the different named entities considered.
 %TODO
-\subsubsection{Twitter named entities analysis}
+\subsubsection{Twitter named entity analysis}
 
+The Figure \ref{fig:twitter_postcounts_entity} depicts the count of tweets per language and named entity. The Twitter dataset contains higher number of tweets for the \textit{covid} keyword and for each language considered. This fact could explain the uncertainty related to the average number of links per named entity as is shown in the Figure \ref{fig:twitter_average_links}.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.27]{twitter/namedentitylevel/twitter_postcounts_entity.png}
+		\caption{Tweet posts count posted per language and named entity.}
+		\label{fig:twitter_postcounts_entity}
+	\end{center}
+\end{figure}
+
+The average number of links per named entity and the relatively low variance demonstrate that links could be a proper candidate to enrich, somehow, the tweet data with the content of the links and cover their inherent lack of information.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.26]{twitter/namedentitylevel/twitter_average_\#links.png}
@@ -221,6 +231,7 @@ This analysis is intended to elucidate variables that could be candidates to be 
 	\end{center}
 \end{figure}
 
+\par A hashtag is a specific Twitter feature. Hashtags are intended to act as a summarization of the tweet in terms of the topic they cover. However, exploiting information from hashtags is a difficult task. First of all not all tweets will contain hashtags. The Figure \ref{fig:twitter_averagecount_hashtags} plots the average number of hashtags per named entity regardless the language. There are hardly any hashtags for the keyword \textit{dalas} in contrast with the keyword \textit{\$AMC} which reaches the maximum average amongst the remaining keywords. However, it is important to highlight that the maximum average is 0.75 approximately and the average number of hashtags per named entity is, in general, small. Therefore, it is expected that there will be tweets that do not contain a hashtag.
 
 \begin{figure}[H]
 	\begin{center}
@@ -230,26 +241,18 @@ This analysis is intended to elucidate variables that could be candidates to be 
 	\end{center}
 \end{figure}
 
+\par Lastly, a tweet may be a repost of other tweet. This is known as retweet and the number of retweets of a tweet could be a good indicator of its popularity. The Figure \ref{fig:twitter_counts_isrt} shows the number of tweets that are a retweet of other for each named entity. For the \textit{covid} keyword there are a large amount of retweets. However, for the remaining named entities, the number of tweets and retweets are similar.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{twitter/namedentitylevel/twitter_counts_isrt.png}
-		\caption{Tweet counts that are retweet.}
+		\caption{Count of tweets that are retweet per named entity.}
 		\label{fig:twitter_counts_isrt}
 	\end{center}
 \end{figure}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.27]{twitter/namedentitylevel/twitter_postcounts_entity.png}
-		\caption{Tweet posts count posted per language and named entity.}
-		\label{fig:twitter_postcounts_entity}
-	\end{center}
-\end{figure}
 
-
-
-\subsubsection{Blog posts named entities analysis}
-
+\subsubsection{Blog posts named entity analysis}
+For the blog posts dataset the average number of links per named entity is higher that the ones computed for the Twitter dataset. This reinforces the fact of using these links to enrich the textual data.
 
 \begin{figure}[H]
 	\begin{center}
@@ -259,6 +262,7 @@ This analysis is intended to elucidate variables that could be candidates to be 
 	\end{center}
 \end{figure}
 
+\par  The Figure \ref{fig:blogpost_average_tags_entity} plots the average number of tags per named entity. These values vary drastically compared to the averages computed for the Twitter dataset.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{blogposts/namedentitylevel/blogpost_average_\#tags.png}
@@ -267,9 +271,10 @@ This analysis is intended to elucidate variables that could be candidates to be 
 	\end{center}
 \end{figure}
 
+\par Finally, it seems that there are two predominant languages in this dataset since the number of blog posts written in English and Spanish for each named entity are greater than the number of posts for the remaining languages. The Figure \ref{fig:blogposts_postcount_lang_entity} depicts these statistics.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.2]{blogposts/namedentitylevel/blogpost_postcount_lang.png}
+		\includegraphics[scale=0.3]{blogposts/namedentitylevel/blogpost_postcount_lang.png}
 		\caption{Blog posts count per language and named entity.}
 		\label{fig:blogposts_postcount_lang_entity}
 	\end{center}
@@ -277,7 +282,10 @@ This analysis is intended to elucidate variables that could be candidates to be 
 
 
 
-\subsubsection{Reddit named entities analysis}
+\subsubsection{Reddit named entity analysis}
+
+\par Similar to the retweets, the number of comments and likes of a Reddit post could be a good indicator of popularity. The Figures \ref{fig:reddit_average_comments_entity} and \ref{fig:reddit_average_ups_entity} shows the average number of comments and likes per named entity. In general, the number of comments are similar except for the \textit{apple} and \textit{la palma} named entities.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{reddit/namedentitylevel/reddit_average_\#comments.png}
@@ -294,14 +302,18 @@ This analysis is intended to elucidate variables that could be candidates to be 
 	\end{center}
 \end{figure}
 
+\par As expected, the number of Reddit posts in English is the biggest. However, it is interesting to remark that \textit{la palma} is a Spanish named entity. Despite of this, the number of posts in English containing this named entity are still greater than the number of posts for the Spanish language. 
+\par Although in this work only five languages are considered, the Figure \ref{fig:reddit_postcount_lang_entity} shows other languages. This is due to issues of the Social Searcher API.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.4]{reddit/namedentitylevel/reddit_postcount_lang.png}
-		\caption{Average number of likes per named entity.}
+		\caption{Blog posts count per language and named entity.}
 		\label{fig:reddit_postcount_lang_entity}
 	\end{center}
 \end{figure}
 
+
+\par Finally, the number of Reddit posts per sentiment and named entity is shown in the Figure \ref{fig:reddit_postcount_sentiment_entity}. The unbalancing of data with respect to this variable is not appropriate to train classifier models.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.4]{reddit/namedentitylevel/reddit_postcount_sentiment.png}
@@ -309,6 +321,9 @@ This analysis is intended to elucidate variables that could be candidates to be 
 		\label{fig:reddit_postcount_sentiment_entity}
 	\end{center}
 \end{figure}
+
+
+\section{title}
 %TODO include captures
 %TODO explain each one
 % Copora analysis at dataset level
