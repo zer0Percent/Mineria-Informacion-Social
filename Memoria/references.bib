@@ -33,3 +33,86 @@ abstract = {Methods for document clustering and topic modelling in online social
 	journal = {Synthesis Lectures on Human Language Technologies},
 	doi = {10.2200/S00999ED3V01Y202003HLT046}
 }
+
+@report{Blei2003,
+	abstract = {We describe latent Dirichlet allocation (LDA), a generative probabilistic model for collections of discrete data such as text corpora. LDA is a three-level hierarchical Bayesian model, in which each item of a collection is modeled as a finite mixture over an underlying set of topics. Each topic is, in turn, modeled as an infinite mixture over an underlying set of topic probabilities. In the context of text modeling, the topic probabilities provide an explicit representation of a document. We present efficient approximate inference techniques based on variational methods and an EM algorithm for empirical Bayes parameter estimation. We report results in document modeling, text classification, and collaborative filtering, comparing to a mixture of unigrams model and the probabilistic LSI model.},
+	author = {David M Blei and Andrew Y Ng and Jordan@cs Berkeley Edu},
+	journal = {Journal of Machine Learning Research},
+	pages = {993-1022},
+	title = {Latent Dirichlet Allocation Michael I. Jordan},
+	volume = {3},
+	year = {2003},
+}
+
+
+@article{Nikfarjam2015,
+	abstract = {Objective Social media is becoming increasingly popular as a platform for sharing personal health-related information. This information can be utilized for public health monitoring tasks, particularly for pharmacovigilance, via the use of natural language processing (NLP) techniques. However, the language in social media is highly informal, and userexpressed medical concepts are often nontechnical, descriptive, and challenging to extract. There has been limited progress in addressing these challenges, and thus far, advanced machine learning-based NLP techniques have been underutilized. Our objective is to design a machine learning-based approach to extract mentions of adverse drug reactions (ADRs) from highly informal text in social media. Methods: We introduce ADRMine, a machine learning-based concept extraction system that uses conditional random fields (CRFs). ADRMine utilizes a variety of features, including a novel feature for modeling words' semantic similarities. The similarities are modeled by clustering words based on unsupervised, pretrained word representation vectors (embeddings) generated from unlabeled user posts in social media using a deep learning technique. Results: ADRMine outperforms several strong baseline systems in the ADR extraction task by achieving an F-measure of 0.82. Feature analysis demonstrates that the proposed word cluster features significantly improve extraction performance. Conclusion: It is possible to extract complex medical concepts, with relatively high performance, from informal, usergenerated content. Our approach is particularly scalable, suitable for social media mining, as it relies on large volumes of unlabeled data, thus diminishing the need for large, annotated training data sets.},
+	author = {Azadeh Nikfarjam and Abeed Sarker and Karen O'Connor and Rachel Ginn and Graciela Gonzalez},
+	doi = {10.1093/jamia/ocu041},
+	issn = {1527974X},
+	issue = {3},
+	journal = {Journal of the American Medical Informatics Association},
+	keywords = {ADR,Adverse drug reaction,Deep learning word embeddings,Machine learning,Natural language processing,Pharmacovigilance,Social media mining},
+	pages = {671-681},
+	pmid = {25755127},
+	publisher = {Oxford University Press},
+	title = {Pharmacovigilance from social media: Mining adverse drug reaction mentions using sequence labeling with word embedding cluster features},
+	volume = {22},
+	year = {2015},
+}
+
+@inproceedings{stanfordTwitterPosTagger,
+	author = {Toutanova, Kristina and Klein, Dan and Manning, Christopher D. and Singer, Yoram},
+	title = {Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network},
+	year = {2003},
+	publisher = {Association for Computational Linguistics},
+	address = {USA},
+	url = {https://doi.org/10.3115/1073445.1073478},
+	doi = {10.3115/1073445.1073478},
+	abstract = {We present a new part-of-speech tagger that demonstrates the following ideas: (i) explicit use of both preceding and following tag contexts via a dependency network representation, (ii) broad use of lexical features, including jointly conditioning on multiple consecutive words, (iii) effective use of priors in conditional loglinear models, and (iv) fine-grained modeling of unknown word features. Using these ideas together, the resulting tagger gives a 97.24% accuracy on the Penn Treebank WSJ, an error reduction of 4.4% on the best previous single automatically learned tagging result.},
+	booktitle = {Proceedings of the 2003 Conference of the North American Chapter of the Association for Computational Linguistics on Human Language Technology - Volume 1},
+	pages = {173–180},
+	numpages = {8},
+	location = {Edmonton, Canada},
+	series = {NAACL '03}
+}
+
+@inproceedings{gimpelPosSetExtended,
+	title = "Improved Part-of-Speech Tagging for Online Conversational Text with Word Clusters",
+	author = "Owoputi, Olutobi  and
+	O{'}Connor, Brendan  and
+	Dyer, Chris  and
+	Gimpel, Kevin  and
+	Schneider, Nathan  and
+	Smith, Noah A.",
+	booktitle = "Proceedings of the 2013 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies",
+	month = jun,
+	year = "2013",
+	address = "Atlanta, Georgia",
+	publisher = "Association for Computational Linguistics",
+	url = "https://aclanthology.org/N13-1039",
+	pages = "380--390",
+}
+
+@inproceedings{khanParserAdaptation,
+	title = "Does Size Matter? Text and Grammar Revision for Parsing Social Media Data",
+	author = "Khan, Mohammad  and
+	Dickinson, Markus  and
+	Kuebler, Sandra",
+	booktitle = "Proceedings of the Workshop on Language Analysis in Social Media",
+	month = jun,
+	year = "2013",
+	address = "Atlanta, Georgia",
+	publisher = "Association for Computational Linguistics",
+	url = "https://aclanthology.org/W13-1101",
+	pages = "1-10",
+}
+
+@inproceedings{wikiEnrichTwitter,
+	title={Clustering tweets usingWikipedia concepts.},
+	author={Tang, Guoyu and Xia, Yunqing and Wang, Weizhi and Lau, Raymond and Zheng, Fang},
+	booktitle={LREC},
+	pages={2262--2267},
+	year={2014},
+	organization={Citeseer}
+}

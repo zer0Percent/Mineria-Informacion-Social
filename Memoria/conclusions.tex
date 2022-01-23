@@ -6,8 +6,6 @@ The analysis at corpora level arouses that there exists a dominant natural langu
 
 
 \section{Further work}
-Since the Twitter and blog posts dataset are not annotated, unsupervised approaches could be executed in order to detect events or discover topics. Clustering algorithms and generative models like Latent Dirichlet Allocation \citep{bleiLda} could be a relatively good starting point. However, to evaluate the quality of the clusters, intrinsic metrics must be considered since the dataset is unlabelled. Two metrics could be the average similarity within a cluster objects or the average similarity between the objects of one cluster with the objects of other clusters.
-
-
-However, if the dataset were annotated, extrinsic metrics like F-value or Normalized Mutual Information (NMI) could be used to evaluate the clusters quality \citep{clusteringTopicModellingTwitterReddit}.
-% The anotation suscites unsupervised or supervised apporaches to infer rules that allows to generalize the information. However, the unsupervised tasks becomes a challenge in the context of short texts, like tweets or SMS. Adatp the current nlp tools or add preprocessing steps to normalize the data or enrich it by using the metadata contained in the posts (links, hashtags...)
+%TODO: deeper analysis at token level explain this!!!
+Deeper analysis must be conducted in order to determine relative importances of the words for a given dataset and named entity in order to exploit them in downstream tasks like topic modelling and event detection.
+\par Since the Twitter and blog posts dataset are not annotated, unsupervised approaches could be executed in order to detect events or discover topics. Clustering algorithms and generative models like Latent Dirichlet Allocation \citep{Blei2003} could be a relatively good starting point. However, to evaluate the quality of the clusters, intrinsic metrics must be considered since the dataset is unlabelled. Two metrics could be the average similarity within a cluster objects or the average similarity between the objects of one cluster with the objects of other clusters. However, if the dataset were annotated, extrinsic metrics like F-value or Normalized Mutual Information (NMI) could be used to evaluate the clusters quality \citep{clusteringTopicModellingTwitterReddit}.
