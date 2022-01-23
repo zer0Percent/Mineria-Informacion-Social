@@ -152,7 +152,7 @@ The figure \ref{fig:twitter_postcounts_date} shows top 100 dates ordered by the 
 However, the Twitter dataset is the largest one and cannot be compared with the other at first glance.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.29]{twitter/datasetlevel/twitter_postcounts_date.png}
+		\includegraphics[scale=0.33]{twitter/datasetlevel/twitter_postcounts_date.png}
 		\caption{Number of tweets published per date. Only the dates with higher values are shown.}
 		\label{fig:twitter_postcounts_date}
 	\end{center}
@@ -179,7 +179,7 @@ The distribution of blog posts per language is quite similar to the Twitter data
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.4]{blogposts/datasetlevel/blogpost_postcounts_date.png}
+		\includegraphics[scale=0.49]{blogposts/datasetlevel/blogpost_postcounts_date.png}
 		\caption{Blog posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:blogpost_postcounts_date}
 	\end{center}
@@ -200,7 +200,7 @@ Something quite different occurs with the Reddit dataset. First of all, despite 
 From the Figure \ref{fig:reddit_postcounts_date} it can be stated that, regardless the social data, the time variable could be used to mine information related to events by considering, for example, the hypothesis that posts with common words and published in similar dates will form clusters of related posts.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.29]{reddit/datasetlevel/reddit_postcounts_date.png}
+		\includegraphics[scale=0.35]{reddit/datasetlevel/reddit_postcounts_date.png}
 		\caption{Reddit posts count posted per date. Only the dates with higher values are shown.}
 		\label{fig:reddit_postcounts_date}
 	\end{center}
@@ -323,7 +323,11 @@ For the blog posts dataset the average number of links per named entity is highe
 \end{figure}
 
 
-\section{title}
+\section{Adaptations of NLP tools}
+
+The specific lingo used in social networks requires to readapt the current NLP tools in order to capture these nuances. Hashtags, abbreviations, misspellings, emoticons or inconsistent capitalization or punctuation must be taken into account by the already trained models. Current tokenizers must cover these patterns. \citep{connotTokenizer} coded regular expressions for tweets and reached a F-measure value of 0.96. However, to code manual rules implies that they probably will need to be reconsidered if the domain application is changed since they focused on tweets that mention drugs.
+\par Part of speech taggers must face the out of vocabulary words (OOV) since the misspellings or short forms will be incorrectly classified by the current taggers. Hence, re-training the current models and extend the tag set is mandatory \citep{synthesisLecturesSocial}. \citep{stanfordTwitterPosTagger} proposes a system based con Conditional Random Fields and clustering OOV words to reach an accuracy value of 0.85 but they did not consider a including new tags in the tag set. \citep{gimpelPosSetExtended} extended the tag set for Twitter to cover hashtags, links, etc and obtained an accuracy value of 0.9. Likewise, chunkers and parsers must be reconditioned. \cite{khanParserAdaptation} proposes a dependency parser but was designed over specific Twitter dataset.
+%Tokenizers: The specific ling
 %TODO include captures
 %TODO explain each one
 % Copora analysis at dataset level
